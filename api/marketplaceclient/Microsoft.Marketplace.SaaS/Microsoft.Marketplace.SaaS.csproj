@@ -1,7 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>$(RequiredTargetFrameworks);net47</TargetFramework>
-    <Nullable>annotations</Nullable>    
-  </PropertyGroup>
-</Project>

@@ -19,7 +19,7 @@
 			"label": "build",
 			"command": "dotnet",
 			"args": [
-				"build",
+				"msbuild",
 				"/property:GenerateFullPaths=true",
 				"/consoleloggerparameters:NoSummary"
 			],

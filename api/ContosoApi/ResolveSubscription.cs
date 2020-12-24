@@ -12,7 +12,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+// using Microsoft.Extensions.Configuration.AzureAppConfiguration;
     using System;
 
     public static class ResolveSubscription
@@ -21,10 +21,13 @@ using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 static ResolveSubscription()
 {
 
-     var builder = new ConfigurationBuilder();
-    builder.AddAzureAppConfiguration()
-                .AddUserSecrets();
-    Configuration = builder.Build();
+    //  var builder = new ConfigurationBuilder();
+    // builder
+    // // .AddAzureAppConfiguration((options) => {
+    // //     options.
+    // // })
+    //             .AddUserSecrets();
+    // Configuration = builder.Build();
     
 }
 
@@ -40,8 +43,8 @@ static ResolveSubscription()
             
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
+            // dynamic data = JsonConvert.DeserializeObject(requestBody);
+            // name = name ?? data?.name;
 
             string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."

@@ -45,9 +45,7 @@ namespace Microsoft.CommercialMarketplace
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            // The query parameter comes in as UrlDecoded, but not fully. The %2b chars are converted to space, 
-            // but we want them to be replaced by + instead to conform.
-            var marketplaceToken = req.Query["token"].ToString().Replace(" ", "+");
+            var marketplaceToken = req.Query["token"].ToString();
 
             var tenantId = Configuration["TenantId"];
             var appId = Configuration["AppId"];

@@ -5,6 +5,9 @@ const signOutButton = document.getElementById('signOut');
 const cardDiv = document.getElementById("card-div");
 const profileButton = document.getElementById("seeProfile");
 const profileDiv = document.getElementById("profile-div");
+const claimsDiv = document.getElementById("claims-div");
+const resolveDiv = document.getElementById("resolve-div");
+const resolveCard = document.getElementById("resolve-card");
 
 function showWelcomeMessage(account) {
   // Reconfiguring DOM elements
@@ -14,6 +17,14 @@ function showWelcomeMessage(account) {
   signInButton.setAttribute("onclick", "signOut();");
   signInButton.setAttribute('class', "btn btn-success")
   signInButton.innerHTML = "Sign Out";
+
+  const name = document.createElement('p');
+  name.innerHTML = `<strong>Name: </strong> ${account.name}`;
+  const userName = document.createElement('p');
+  userName.innerHTML = `<strong>User name: </strong>${account.username}`;
+  claimsDiv.appendChild(name);
+  claimsDiv.appendChild(userName);
+  claimsDiv.style.display = "";
 }
 
 function updateUI(data, endpoint) {
@@ -29,7 +40,7 @@ function updateUI(data, endpoint) {
     profileDiv.appendChild(title);
     profileDiv.appendChild(phone);
     profileDiv.appendChild(address);
-    
+    profileDiv.style.display = "";
   } 
 }
 
@@ -50,7 +61,12 @@ function getUrlParameter(sParam) {
 
 async function callResolve(token) {
   let text = await( await fetch('/api/ResolveSubscription?token=' + token)).text();
-  document.querySelector('#name').textContent = text;
+
+  const resolveDetails = document.createElement('p');
+  resolveDetails.innerHTML = text;
+  resolveDiv.appendChild(resolveDetails);
+  resolveCard.style.display = "";
+  // document.querySelector('#resolveResult').innerHTML = text;
 }
 
 $(document).ready(async function(){

@@ -9,5 +9,8 @@
         "baseUri": "/api",
         "proxyUri": "http://localhost:7071/api"
      },
-     "liveServer.settings.host": "localhost"
+    "liveServer.settings.host": "localhost",
+    "staticWebApps.appSubpath": "/",
+    "staticWebApps.apiSubpath": "/",
+    "staticWebApps.outputSubpath": "build"
 }

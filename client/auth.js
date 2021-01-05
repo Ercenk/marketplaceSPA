@@ -20,12 +20,42 @@ myMSALObj.handleRedirectPromise().then(handleResponse).catch(err => {
     console.error(err);
 });
 
+function callMSGraph(endpoint, accessToken, callback) {
+    const headers = new Headers();
+    const bearer = `Bearer ${accessToken}`;
+
+    headers.append("Authorization", bearer);
+
+    const options = {
+        method: "GET",
+        headers: headers
+    };
+
+    console.log('request made to Graph API at: ' + new Date().toString());
+
+    fetch(endpoint, options)
+        .then(response => response.json())
+        .then(response => callback(response, endpoint))
+        .catch(error => console.log(error));
+}
+
+async function seeProfile() {
+    const currentAcc = myMSALObj.getAccountByHomeId(accountId);
+    if (currentAcc) {
+        const response = await getTokenPopup(loginRequest, currentAcc).catch(error => {
+            console.log(error);
+        });
+        callMSGraph(graphConfig.graphMeEndpoint, response.accessToken, updateUI);
+    }
+}
+
 function handleResponse(resp) {
     if (resp !== null) {
         accountId = resp.account.homeAccountId;
         // TODO: Commenting out following until the new version of MSAL supports this
         // myMSALObj.setActiveAccount(resp.account);
         showWelcomeMessage(resp.account);
+        seeProfile();
     } else {
         // need to call getAccount here?
         const currentAccounts = myMSALObj.getAllAccounts();
@@ -39,6 +69,7 @@ function handleResponse(resp) {
             // myMSALObj.setActiveAccount(activeAccount);
             accountId = activeAccount.homeAccountId;
             showWelcomeMessage(activeAccount);
+            seeProfile();
         }
     }
 }

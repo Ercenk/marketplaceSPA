@@ -12,7 +12,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/api\\ContosoApi"
+				"cwd": "${workspaceFolder}/api"
 			}
 		},
 		{
@@ -31,7 +31,7 @@
 			},
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/api\\ContosoApi"
+				"cwd": "${workspaceFolder}/api"
 			}
 		},
 		{
@@ -47,7 +47,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/api\\ContosoApi"
+				"cwd": "${workspaceFolder}/api"
 			}
 		},
 		{
@@ -64,16 +64,16 @@
 			"dependsOn": "clean release",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/api\\ContosoApi"
+				"cwd": "${workspaceFolder}/api"
 			}
 		},
 		{
 			"type": "func",
 			"dependsOn": "build",
 			"options": {
-				"cwd": "${workspaceFolder}/api\\ContosoApi/bin/Debug/netcoreapp3.1"
+				"cwd": "${workspaceFolder}/api/bin/Debug/netcoreapp3.1"
 			},
-			"command": "host start --csharp",
+			"command": "host start",
 			"isBackground": true,
 			"problemMatcher": "$func-dotnet-watch"
 		}
